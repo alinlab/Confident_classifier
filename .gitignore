@@ -1,4 +1,4 @@
 # Google App Engine generated folder
 appengine-generated/
 *.pyc
-./data
+data/*
