@@ -16,5 +16,5 @@ We use download links of two out-of-distributin datasets from [odin-pytorch](htt
 
 ## Training scripts
 
-* [`run_cross_entropy.sh`](run_CMCL.sh): train the models using standard cross entropy loss.
-* [`run_joint_confidence.sh`](run_MCL.sh): train the models using joint confidence loss.
+* [`run_cross_entropy.sh`](./scriots/run_cross_entropy.sh): train the models using standard cross entropy loss.
+* [`run_joint_confidence.sh`](./scripts/run_joint_confidence.sh): train the models using joint confidence loss.
