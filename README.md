@@ -18,3 +18,10 @@ We use download links of two out-of-distributin datasets from [odin-pytorch](htt
 
 * [`run_cross_entropy.sh`](./scripts/run_cross_entropy.sh): train the models using standard cross entropy loss.
 * [`run_joint_confidence.sh`](./scripts/run_joint_confidence.sh): train the models using joint confidence loss.
+
+## Test scripts
+
+* [`test.sh`](./scripts/test.sh) --dataset --out_dataset --pre_trained_net 
+  --dataset = name of in-distribution (svhn or cifar10) \
+  --out_dataset = name of out-of-distribution (svhn, cifar10, lsun or imagenet) \
+  --pre_trained_net = path to pre_trained_net
