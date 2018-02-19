@@ -27,7 +27,7 @@ parser.add_argument('--lr', type=float, default=0.0002, help='learning rate')
 parser.add_argument('--no-cuda', action='store_true', default=False, help='disables CUDA training')
 parser.add_argument('--seed', type=int, default=1, help='random seed')
 parser.add_argument('--log-interval', type=int, default=100, help='how many batches to wait before logging training status')
-parser.add_argument('--dataset', required=True, help='cifar10 | SVHN')
+parser.add_argument('--dataset', default='svhn', help='cifar10 | svhn')
 parser.add_argument('--dataroot', required=True, help='path to dataset')
 parser.add_argument('--imageSize', type=int, default=32, help='the height / width of the input image to network')
 parser.add_argument('--outf', default='.', help='folder to output images and model checkpoints')
@@ -47,11 +47,7 @@ if args.cuda:
 kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
 
 print('load data: ',args.dataset)
-if args.dataset == 'cifar10':
-    train_loader, test_loader = data_loader.getCIFAR10(batch_size=args.batch_size, img_size=args.imageSize, data_root=args.dataroot, num_workers=1)
-
-elif args.dataset == 'svhn':
-    train_loader, test_loader = data_loader.getSVHN(batch_size=args.batch_size, img_size=args.imageSize, data_root=args.dataroot, num_workers=1)
+train_loader, test_loader = data_loader.getTargetDataSet(args.dataset, args.batch_size, args.imageSize, args.dataroot)
 
 print('Load model')
 model = models.vgg13()

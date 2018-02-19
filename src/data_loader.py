@@ -77,3 +77,26 @@ def getCIFAR10(batch_size, img_size=32, data_root='/tmp/public_dataset/pytorch',
         ds.append(test_loader)
     ds = ds[0] if len(ds) == 1 else ds
     return ds
+
+
+def getTargetDataSet(data_type, batch_size, imageSize, dataroot):
+    if data_type == 'cifar10':
+        train_loader, test_loader = getCIFAR10(batch_size=batch_size, img_size=imageSize, data_root=dataroot, num_workers=1)
+    elif data_type == 'svhn':
+        train_loader, test_loader = getSVHN(batch_size=batch_size, img_size=imageSize, data_root=dataroot, num_workers=1)
+
+    return train_loader, test_loader
+
+def getNonTargetDataSet(data_type, batch_size, imageSize, dataroot):
+    if data_type == 'cifar10':
+        _, test_loader = getCIFAR10(batch_size=batch_size, img_size=imageSize, data_root=dataroot, num_workers=1)
+    elif data_type == 'svhn':
+        _, test_loader = getSVHN(batch_size=batch_size, img_size=imageSize, data_root=dataroot, num_workers=1)
+    elif data_type == 'imagenet':
+        testsetout = datasets.ImageFolder(dataroot+"/Imagenet_resize", transform=transforms.Compose([transforms.Scale(imageSize),transforms.ToTensor()]))
+        test_loader = torch.utils.data.DataLoader(testsetout, batch_size=batch_size, shuffle=False, num_workers=1)
+    elif data_type == 'lsun':
+        testsetout = datasets.ImageFolder(dataroot+"/LSUN_resize", transform=transforms.Compose([transforms.Scale(imageSize),transforms.ToTensor()]))
+        test_loader = torch.utils.data.DataLoader(testsetout, batch_size=batch_size, shuffle=False, num_workers=1)
+
+    return test_loader

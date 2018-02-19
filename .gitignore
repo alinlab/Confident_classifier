@@ -2,3 +2,5 @@
 appengine-generated/
 *.pyc
 data/*
+results/*
+test/*
