@@ -21,7 +21,7 @@ We use download links of two out-of-distributin datasets from [odin-pytorch](htt
 
 ## Test scripts
 
-* [`test.sh`](./scripts/test.sh) --dataset --out_dataset --pre_trained_net 
+* [`test.sh`](./scripts/test.sh) --dataset --out_dataset --pre_trained_net \
   --dataset = name of in-distribution (svhn or cifar10) \
   --out_dataset = name of out-of-distribution (svhn, cifar10, lsun or imagenet) \
   --pre_trained_net = path to pre_trained_net
