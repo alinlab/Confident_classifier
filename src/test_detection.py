@@ -30,7 +30,7 @@ parser.add_argument('--dataset', required=True, help='target dataset: cifar10 | 
 parser.add_argument('--dataroot', required=True, help='path to dataset')
 parser.add_argument('--imageSize', type=int, default=32, help='the height / width of the input image to network')
 parser.add_argument('--outf', default='/home/rack/KM/2017_Codes/overconfidence/test/log_entropy', help='folder to output images and model checkpoints')
-parser.add_argument('--nt_dataset', required=True, help='non-target dataset: cifar10 | svhn | imagenet | lsun')
+parser.add_argument('--out_dataset', required=True, help='out-of-dist dataset: cifar10 | svhn | imagenet | lsun')
 parser.add_argument('--num_classes', type=int, default=10, help='number of classes (default: 10)')
 parser.add_argument('--pre_trained_net', default='', help="path to pre trained_net")
 
@@ -53,8 +53,8 @@ print(model)
 print('load target data: ',args.dataset)
 _, test_loader = data_loader.getTargetDataSet(args.dataset, args.batch_size, args.imageSize, args.dataroot)
 
-print('load non target data: ',args.nt_dataset)
-nt_test_loader = data_loader.getNonTargetDataSet(args.nt_dataset, args.batch_size, args.imageSize, args.dataroot)
+print('load non target data: ',args.out_dataset)
+nt_test_loader = data_loader.getNonTargetDataSet(args.out_dataset, args.batch_size, args.imageSize, args.dataroot)
 
 if args.cuda:
     model.cuda()
