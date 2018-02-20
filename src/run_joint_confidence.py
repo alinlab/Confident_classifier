@@ -26,7 +26,7 @@ parser.add_argument('--lr', type=float, default=0.0002, help='learning rate')
 parser.add_argument('--no-cuda', action='store_true', default=False, help='disables CUDA training')
 parser.add_argument('--seed', type=int, default=1, help='random seed')
 parser.add_argument('--log-interval', type=int, default=100, help='how many batches to wait before logging training status')
-parser.add_argument('--dataset', default='svhn', help='cifar10 | svhn')
+parser.add_argument('--dataset', default='cifar10', help='cifar10 | svhn')
 parser.add_argument('--dataroot', required=True, help='path to dataset')
 parser.add_argument('--imageSize', type=int, default=32, help='the height / width of the input image to network')
 parser.add_argument('--outf', default='.', help='folder to output images and model checkpoints')
@@ -37,6 +37,11 @@ parser.add_argument('--num_classes', type=int, default=10, help='the # of classe
 parser.add_argument('--beta', type=float, default=1, help='penalty parameter for KL term')
 
 args = parser.parse_args()
+
+if args.dataset == 'cifar10':
+    args.beta = 0.1
+    args.batch_size = 128
+    
 print(args)
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 print("Random Seed: ", args.seed)
@@ -190,7 +195,7 @@ for epoch in range(1, args.epochs + 1):
         optimizerG.param_groups[0]['lr'] *= args.droprate
         optimizerD.param_groups[0]['lr'] *= args.droprate
         optimizer.param_groups[0]['lr'] *= args.droprate
-    if epoch % 50 == 0:
+    if epoch % 20 == 0:
         # do checkpointing
         torch.save(netG.state_dict(), '%s/netG_epoch_%d.pth' % (args.outf, epoch))
         torch.save(netD.state_dict(), '%s/netD_epoch_%d.pth' % (args.outf, epoch))
