@@ -1,5 +1,5 @@
 ## original code is from https://github.com/ShiyuLiang/odin-pytorch/blob/master/code/calMetric.py
-## Kimin Lee
+## Modeified by Kimin Lee
 from __future__ import print_function
 import torch
 from torch.autograd import Variable
