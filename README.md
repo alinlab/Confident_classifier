@@ -1,6 +1,6 @@
 # Training Confidence-Calibrated Classifier for Detecting Out-of-Distribution Samples
 
-This project is for the paper "Training Confidence-Calibrated Classifier for Detecting Out-of-Distribution Samples". Some codes are from [odin-pytorch](https://github.com/ShiyuLiang/odin-pytorch).  
+This project is for the paper "[Training Confidence-Calibrated Classifier for Detecting Out-of-Distribution Samples](https://arxiv.org/abs/1711.09325)". Some codes are from [odin-pytorch](https://github.com/ShiyuLiang/odin-pytorch).  
 
 ## Preliminaries
 
