@@ -14,7 +14,6 @@ import numpy as np
 import torchvision.utils as vutils
 import models
 
-from torch.utils.serialization import load_lua
 from torchvision import datasets, transforms
 from torch.autograd import Variable
 
