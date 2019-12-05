@@ -161,7 +161,7 @@ def train(epoch):
         if batch_idx % args.log_interval == 0:
             print('Classification Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}, KL fake Loss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
-                100. * batch_idx / len(train_loader), loss.data[0], KL_loss_fake.data[0]))
+                100. * batch_idx / len(train_loader), loss.data.item(), KL_loss_fake.data.item()))
             fake = netG(fixed_noise)
             vutils.save_image(fake.data, '%s/gan_samples_epoch_%03d.png'%(args.outf, epoch), normalize=True)
 
@@ -176,7 +176,7 @@ def test(epoch):
             data, target = data.cuda(), target.cuda()
         data, target = Variable(data, volatile=True), Variable(target)
         output = F.log_softmax(model(data))
-        test_loss += F.nll_loss(output, target).data[0]
+        test_loss += F.nll_loss(output, target).data.item()
         pred = output.data.max(1)[1] # get the index of the max log-probability
         correct += pred.eq(target.data).cpu().sum()
 
